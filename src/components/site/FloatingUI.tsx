@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUp, MessageCircle, Phone, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
 
 export function FloatingUI() {
   const [progress, setProgress] = useState(0);
@@ -62,12 +63,12 @@ export function FloatingUI() {
         >
           <Phone className="size-4" /> Call
         </a>
-        <a
-          href="#enquiry"
+        <Link
+          to="/contact"
           className="inline-flex min-h-12 flex-[1.4] items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground"
         >
           Apply Now
-        </a>
+        </Link>
       </div>
 
       {/* Admission popup */}
@@ -88,13 +89,13 @@ export function FloatingUI() {
             <p className="mt-2 text-sm text-muted-foreground">
               Only 30 seats per batch. Book a free counselling slot this week.
             </p>
-            <a
-              href="#enquiry"
+            <Link
+              to="/contact"
               onClick={() => setDismissed(true)}
               className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-gold-foreground"
             >
               Book counselling
-            </a>
+            </Link>
           </div>
         </div>
       )}
