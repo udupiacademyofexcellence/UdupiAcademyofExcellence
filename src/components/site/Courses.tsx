@@ -1,143 +1,102 @@
-import { ArrowUpRight, Clock, Download, GraduationCap, IndianRupee, Star } from "lucide-react";
-import hero1 from "@/assets/hero-1.jpg";
-import courseHealth from "@/assets/course-health.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import { cn } from "@/lib/utils";
-import { MagneticButton, Reveal, SectionHeading } from "./primitives";
+import { ArrowRight } from "lucide-react";
+import aviationImg from "@/assets/Aviation & Hospitality.jpg";
+import fireSafetyImg from "@/assets/Fire And Industrial Safety Management.png";
+import hotelMgmtImg from "@/assets/Hotel Management.jpeg";
+import communicationImg from "@/assets/Effective Communication & Interview Preparations.jpg";
+import fashionImg from "@/assets/Diploma In Fashion Designing.webp";
+import interiorImg from "@/assets/Diploma Interior Designing.webp";
+import { Link } from "@tanstack/react-router";
+import { Reveal } from "./primitives";
 
 const COURSES = [
   {
-    img: hero1,
-    w: 900,
-    h: 1200,
-    tag: "Featured",
-    title: "Full Stack Web Development",
-    desc: "Build production-grade applications with React, Node and cloud deployment, mentored by working engineers.",
-    duration: "12 months",
-    eligibility: "PUC / 12th pass",
-    outcome: "Software Developer, QA Engineer",
-    salary: "3.6 – 7.2 LPA",
-    placement: "96%",
+    num: "01",
+    title: "Aviation & Hospitality",
+    duration: "8–10 Month",
+    img: aviationImg,
   },
   {
-    img: courseHealth,
-    w: 1000,
-    h: 700,
-    tag: "Popular",
-    title: "Allied Healthcare & Patient Care",
-    desc: "Clinical skills, patient handling and hospital protocols with rotations at partner hospitals in Udupi and Manipal.",
-    duration: "12 months",
-    eligibility: "10th / PUC pass",
-    outcome: "Patient Care Assistant, OT Technician",
-    salary: "2.8 – 5.4 LPA",
-    placement: "94%",
+    num: "02",
+    title: "Fire And Industrial Safety Management",
+    duration: "8–10 Month",
+    img: fireSafetyImg,
   },
   {
-    img: hero3,
-    w: 900,
-    h: 700,
-    tag: "High demand",
-    title: "Industrial Mechatronics & CNC",
-    desc: "Hands-on machining, automation and maintenance training on live industrial equipment inside our workshop.",
-    duration: "10 months",
-    eligibility: "10th pass / ITI",
-    outcome: "CNC Operator, Maintenance Technician",
-    salary: "3.0 – 6.0 LPA",
-    placement: "92%",
+    num: "03",
+    title: "Hotel Management",
+    duration: "8–10 Month",
+    img: hotelMgmtImg,
+  },
+  {
+    num: "04",
+    title: "Effective Communication & Interview Preparations",
+    duration: "3–5 Month",
+    img: communicationImg,
+  },
+  {
+    num: "05",
+    title: "Diploma In Fashion Designing",
+    duration: "8–10 Month",
+    img: fashionImg,
+  },
+  {
+    num: "06",
+    title: "Diploma Interior Designing",
+    duration: "8–10 Month",
+    img: interiorImg,
   },
 ];
 
 export function Courses() {
   return (
-    <section id="courses" className="py-24 lg:py-32">
+    <section className="py-24 lg:py-32 bg-white">
       <div className="container-wide">
-        <div className="flex flex-wrap items-end justify-between gap-8">
-          <SectionHeading
-            eyebrow="Career programs"
-            title="Programs designed backwards — from the job offer."
-            intro="Twenty career tracks across technology, healthcare, finance, hospitality and manufacturing. Here are three of the most in-demand."
-          />
-          <Reveal delay={120}>
-            <MagneticButton href="#enquiry" variant="outline">
-              View all 20 programs <ArrowUpRight className="size-4" />
-            </MagneticButton>
-          </Reveal>
-        </div>
+        <Reveal>
+          <div className="max-w-2xl mb-16">
+            <h2 className="font-display text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
+              Six job-ready programmes.
+            </h2>
+          </div>
+        </Reveal>
 
-        <div className="mt-16 space-y-8">
-          {COURSES.map((c, i) => (
-            <Reveal
-              key={c.title}
-              delay={60}
-              className={cn(
-                "lift group grid overflow-hidden rounded-[2rem] border border-border bg-card lg:grid-cols-2",
-              )}
-            >
-              <div
-                className={cn(
-                  "relative min-h-[16rem] overflow-hidden",
-                  i % 2 === 1 && "lg:order-2",
-                )}
-              >
-                <img
-                  src={c.img}
-                  alt={c.title}
-                  width={c.w}
-                  height={c.h}
-                  loading="lazy"
-                  className="h-64 w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110 lg:absolute lg:inset-0 lg:h-full"
-                />
-                <span className="absolute top-5 left-5 inline-flex items-center gap-1.5 rounded-full bg-gold px-3.5 py-1.5 text-[11px] font-bold tracking-wide text-gold-foreground uppercase">
-                  <Star className="size-3 fill-current" /> {c.tag}
-                </span>
-              </div>
-
-              <div className="p-8 lg:p-12">
-                <h3 className="text-2xl font-extrabold sm:text-3xl">{c.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{c.desc}</p>
-
-                <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5">
-                  {[
-                    { icon: Clock, k: "Duration", v: c.duration },
-                    { icon: GraduationCap, k: "Eligibility", v: c.eligibility },
-                    { icon: IndianRupee, k: "Expected salary", v: c.salary },
-                    { icon: Star, k: "Placement rate", v: c.placement },
-                  ].map((row) => (
-                    <div key={row.k} className="flex min-w-0 gap-3">
-                      <row.icon className="mt-0.5 size-4 shrink-0 text-accent" />
-                      <div className="min-w-0">
-                        <dt className="text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
-                          {row.k}
-                        </dt>
-                        <dd className="text-sm font-semibold">{row.v}</dd>
-                      </div>
-                    </div>
-                  ))}
-                </dl>
-
-                <p className="mt-6 rounded-2xl bg-surface px-4 py-3 text-sm">
-                  <span className="font-semibold">Career outcome: </span>
-                  <span className="text-muted-foreground">{c.outcome}</span>
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <MagneticButton href="#enquiry" variant="primary" className="px-6 py-3">
-                    Apply Now
-                  </MagneticButton>
-                  <MagneticButton href="#enquiry" variant="outline" className="px-6 py-3">
-                    Learn More
-                  </MagneticButton>
-                  <a
-                    href="#enquiry"
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-accent transition-colors hover:bg-surface"
-                  >
-                    <Download className="size-4" /> Syllabus
-                  </a>
+        <div className="border-t border-ink/20">
+          {COURSES.map((c) => (
+            <Reveal key={c.num} delay={0} className="group border-b border-ink/20">
+              <Link to="/courses" className="flex flex-col lg:flex-row lg:items-center justify-between py-10 lg:py-12 px-2 hover:bg-surface transition-colors duration-500 relative overflow-hidden">
+                <div className="flex items-start lg:items-center gap-6 lg:gap-12 relative z-10">
+                  <span className="font-display text-2xl lg:text-3xl font-extrabold text-ink/30 group-hover:text-gold transition-colors">
+                    {c.num}
+                  </span>
+                  <h3 className="font-display text-2xl lg:text-4xl font-extrabold text-ink tracking-tight group-hover:translate-x-4 transition-transform duration-500">
+                    {c.title}
+                  </h3>
                 </div>
-              </div>
+                
+                <div className="flex items-center justify-between lg:justify-end gap-12 mt-6 lg:mt-0 relative z-10 pl-14 lg:pl-0">
+                  <span className="text-sm font-semibold tracking-widest text-ink/60 uppercase">
+                    {c.duration}
+                  </span>
+                  <div className="size-12 rounded-full border border-ink/20 flex items-center justify-center group-hover:bg-gold group-hover:border-gold group-hover:text-ink transition-all duration-300">
+                    <ArrowRight className="size-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+                  </div>
+                </div>
+
+                {/* Subtle Image Hover Reveal (Desktop Only) */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] aspect-video opacity-0 pointer-events-none group-hover:opacity-10 scale-95 group-hover:scale-100 transition-all duration-700 hidden lg:block z-0">
+                  <img src={c.img} alt={c.title} className="w-full h-full object-cover grayscale" />
+                </div>
+              </Link>
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={100}>
+          <div className="mt-16 flex justify-center">
+            <Link to="/courses" className="inline-flex items-center justify-center bg-ink px-8 py-4 text-[13px] font-semibold text-white uppercase tracking-wider transition-all hover:bg-gold hover:text-ink">
+              View All Courses <ArrowRight className="ml-2 size-4" />
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

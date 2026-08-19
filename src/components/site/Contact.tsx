@@ -1,26 +1,25 @@
 import { useState, type FormEvent } from "react";
-import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send, Youtube } from "lucide-react";
+import { Send } from "lucide-react";
 import { z } from "zod";
-import { Reveal, SectionHeading } from "./primitives";
+import { Reveal } from "./primitives";
 import { cn } from "@/lib/utils";
+
+const COURSES = [
+  "Aviation & Hospitality",
+  "Fire And Industrial Safety Management",
+  "Hotel Management",
+  "Effective Communication & Interview Preparations",
+  "Diploma In Fashion Designing",
+  "Diploma Interior Designing"
+];
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your full name").max(100),
   email: z.string().trim().email("Enter a valid email address").max(255),
-  phone: z
-    .string()
-    .trim()
-    .regex(/^[0-9+\s-]{10,15}$/, "Enter a valid phone number"),
-  course: z.string().trim().min(2, "Tell us the programme you want").max(120),
+  phone: z.string().trim().regex(/^[0-9+\s-]{10,15}$/, "Enter a valid phone number"),
+  course: z.enum(COURSES as [string, ...string[]], { required_error: "Please select a programme" }),
   message: z.string().trim().max(1000).optional(),
 });
-
-const FIELDS = [
-  { name: "name", label: "Full name", type: "text" },
-  { name: "email", label: "Email address", type: "email" },
-  { name: "phone", label: "Phone number", type: "tel" },
-  { name: "course", label: "Programme of interest", type: "text" },
-] as const;
 
 export function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -44,109 +43,110 @@ export function Contact() {
   };
 
   return (
-    <section id="enquiry" className="relative overflow-hidden py-24 lg:py-32">
-      <div className="mesh-bg absolute inset-0 -z-10 opacity-70" />
+    <section id="enquiry" className="py-24 lg:py-40 bg-surface">
       <div className="container-wide">
-        <SectionHeading
-          eyebrow="Get in touch"
-          title="Talk to an admissions counsellor today."
-          intro="Visit the campus, call us, or send an enquiry — we respond within one working day."
-        />
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <Reveal className="space-y-4">
-            <div className="overflow-hidden rounded-[2rem] border border-border shadow-card">
-              <iframe
-                title="Udupi Academy location map"
-                src="https://www.google.com/maps?q=Udupi,Karnataka&output=embed"
-                loading="lazy"
-                className="h-[300px] w-full border-0 grayscale-[35%] transition-all duration-700 hover:grayscale-0"
-              />
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24">
+          
+          {/* Left: Contact Info */}
+          <Reveal className="space-y-16">
+            <div>
+              <h2 className="font-display text-[3.5rem] leading-[0.95] sm:text-[4.5rem] font-extrabold text-ink tracking-tight">
+                Talk to us about <br/>
+                <span className="text-gold italic pr-4">admissions.</span>
+              </h2>
+              <p className="mt-8 max-w-sm text-lg leading-relaxed text-ink/70">
+                Visit us, call us, or send an enquiry. We prepare you for a real career.
+              </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                { icon: MapPin, title: "Campus", lines: ["Court Road, Udupi", "Karnataka 576101"] },
-                { icon: Phone, title: "Call us", lines: ["+91 98860 12345", "+91 820 252 0000"] },
-                { icon: Mail, title: "Email", lines: ["admissions@udupiacademy.in"] },
-                { icon: Clock, title: "Office hours", lines: ["Mon–Sat · 9:00 – 18:00", "Sunday by appointment"] },
-              ].map((c) => (
-                <div key={c.title} className="rounded-3xl border border-border bg-card p-6">
-                  <span className="grid size-10 place-items-center rounded-2xl bg-surface text-accent">
-                    <c.icon className="size-4" />
-                  </span>
-                  <p className="mt-4 font-semibold">{c.title}</p>
-                  {c.lines.map((l) => (
-                    <p key={l} className="text-sm break-words text-muted-foreground">
-                      {l}
-                    </p>
-                  ))}
-                </div>
-              ))}
-            </div>
-
-            <div className="flex gap-2">
-              {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#enquiry"
-                  aria-label={`Udupi Academy on ${Icon.displayName ?? "social media"}`}
-                  className="grid size-12 place-items-center rounded-full border border-border bg-card transition-colors hover:bg-surface"
-                >
-                  <Icon className="size-4" />
+            <div className="grid sm:grid-cols-2 gap-12 border-t border-ink/10 pt-12">
+              <div>
+                <p className="text-[11px] font-bold tracking-widest text-ink/50 uppercase mb-4">Phone</p>
+                <a href="tel:+916363913356" className="font-display text-3xl font-bold text-ink hover:text-gold transition-colors">
+                  +91 63639 13356
                 </a>
-              ))}
+              </div>
+              <div>
+                <p className="text-[11px] font-bold tracking-widest text-ink/50 uppercase mb-4">Main Campus</p>
+                <p className="font-display text-lg font-semibold text-ink leading-snug">
+                  MISGAR UNIQUE ZONE<br/>
+                  SHIVAJI CHOWK, RAYARPETE ROAD<br/>
+                  SIRSI - 581401
+                </p>
+              </div>
+              <div>
+                <p className="text-[11px] font-bold tracking-widest text-ink/50 uppercase mb-4">Training Centres</p>
+                <ul className="space-y-2 font-display text-lg font-semibold text-ink">
+                  <li>Bangalore</li>
+                  <li>Udupi</li>
+                  <li>Sirsi</li>
+                </ul>
+              </div>
             </div>
           </Reveal>
 
+          {/* Right: Enquiry Form */}
           <Reveal delay={120}>
-            <form onSubmit={submit} noValidate className="glass rounded-[2rem] p-8 shadow-lift lg:p-10">
-              <h3 className="text-2xl font-extrabold">Enquire about a programme</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Fill this in and a counsellor will call you back.
-              </p>
+            <form onSubmit={submit} noValidate className="bg-white p-8 sm:p-12 border border-ink/10">
+              <h3 className="font-display text-2xl font-bold text-ink mb-8">Send an enquiry</h3>
 
-              <div className="mt-8 space-y-5">
-                {FIELDS.map((f) => (
-                  <div key={f.name} className="relative">
+              <div className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-[11px] font-bold tracking-widest text-ink/60 uppercase mb-2">Full Name</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    className={cn("w-full border-b bg-transparent pb-3 text-lg outline-none transition-colors focus:border-gold", errors.name ? "border-destructive" : "border-ink/20")}
+                  />
+                  {errors.name && <p className="mt-2 text-xs text-destructive font-semibold">{errors.name}</p>}
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="phone" className="block text-[11px] font-bold tracking-widest text-ink/60 uppercase mb-2">Phone Number</label>
                     <input
-                      id={f.name}
-                      name={f.name}
-                      type={f.type}
-                      placeholder=" "
-                      maxLength={255}
-                      className={cn(
-                        "peer w-full rounded-2xl border bg-background px-4 pt-6 pb-2.5 text-sm outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/15",
-                        errors[f.name] ? "border-destructive" : "border-border",
-                      )}
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      className={cn("w-full border-b bg-transparent pb-3 text-lg outline-none transition-colors focus:border-gold", errors.phone ? "border-destructive" : "border-ink/20")}
                     />
-                    <label
-                      htmlFor={f.name}
-                      className="pointer-events-none absolute top-2 left-4 text-[11px] font-medium tracking-wide text-muted-foreground transition-all peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-[11px]"
-                    >
-                      {f.label}
-                    </label>
-                    {errors[f.name] && (
-                      <p className="mt-1.5 px-1 text-xs text-destructive">{errors[f.name]}</p>
-                    )}
+                    {errors.phone && <p className="mt-2 text-xs text-destructive font-semibold">{errors.phone}</p>}
                   </div>
-                ))}
+                  <div>
+                    <label htmlFor="email" className="block text-[11px] font-bold tracking-widest text-ink/60 uppercase mb-2">Email Address</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      className={cn("w-full border-b bg-transparent pb-3 text-lg outline-none transition-colors focus:border-gold", errors.email ? "border-destructive" : "border-ink/20")}
+                    />
+                    {errors.email && <p className="mt-2 text-xs text-destructive font-semibold">{errors.email}</p>}
+                  </div>
+                </div>
 
-                <div className="relative">
+                <div>
+                  <label htmlFor="course" className="block text-[11px] font-bold tracking-widest text-ink/60 uppercase mb-2">Course of Interest</label>
+                  <select
+                    id="course"
+                    name="course"
+                    defaultValue=""
+                    className={cn("w-full border-b bg-transparent pb-3 text-lg outline-none transition-colors focus:border-gold cursor-pointer", errors.course ? "border-destructive" : "border-ink/20")}
+                  >
+                    <option value="" disabled>Select a programme...</option>
+                    {COURSES.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                  {errors.course && <p className="mt-2 text-xs text-destructive font-semibold">{errors.course}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-[11px] font-bold tracking-widest text-ink/60 uppercase mb-2">Message (Optional)</label>
                   <textarea
                     id="message"
                     name="message"
-                    rows={4}
-                    maxLength={1000}
-                    placeholder=" "
-                    className="peer w-full resize-none rounded-2xl border border-border bg-background px-4 pt-6 pb-2.5 text-sm outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/15"
+                    rows={3}
+                    className="w-full resize-none border-b border-ink/20 bg-transparent pb-3 text-lg outline-none transition-colors focus:border-gold"
                   />
-                  <label
-                    htmlFor="message"
-                    className="pointer-events-none absolute top-2 left-4 text-[11px] font-medium tracking-wide text-muted-foreground transition-all peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-[11px]"
-                  >
-                    Message (optional)
-                  </label>
                 </div>
               </div>
 
@@ -154,19 +154,13 @@ export function Contact() {
                 type="submit"
                 disabled={state !== "idle"}
                 className={cn(
-                  "mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-semibold transition-all duration-500",
-                  state === "sent"
-                    ? "bg-gold text-gold-foreground"
-                    : "bg-primary text-primary-foreground shadow-card hover:shadow-lift",
+                  "mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-5 text-[13px] font-semibold tracking-wider text-white uppercase transition-all duration-500",
+                  state === "sent" ? "bg-gold text-ink" : "hover:bg-gold hover:text-ink"
                 )}
               >
-                {state === "idle" && (
-                  <>
-                    Submit enquiry <Send className="size-4" />
-                  </>
-                )}
+                {state === "idle" && <>Submit Enquiry <Send className="size-4" /></>}
                 {state === "sending" && "Sending…"}
-                {state === "sent" && "Thank you — we'll call you shortly"}
+                {state === "sent" && "Thank you — we'll be in touch"}
               </button>
             </form>
           </Reveal>

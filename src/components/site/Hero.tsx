@@ -1,128 +1,82 @@
-import { ArrowRight, BadgeCheck, Sparkles, TrendingUp } from "lucide-react";
-import hero1 from "@/assets/hero-1.jpg";
-import { Counter, Eyebrow, MagneticButton, Reveal } from "./primitives";
+import { ArrowRight } from "lucide-react";
+import heroImg from "@/assets/Student-aviation.jpg";
+import { Reveal } from "./primitives";
+import { Link } from "@tanstack/react-router";
 
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-screen overflow-hidden">
-      {/* Full-bleed background image on the right half */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%]">
-        <img
-          src={hero1}
-          alt="Students learning in a modern Udupi Academy lab"
-          className="size-full object-cover object-center"
-        />
-        {/* gradient fade into left content */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent lg:via-background/20" />
-        {/* bottom fade */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
-      </div>
+    <section id="top" className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-surface pt-32 pb-20">
+      <div className="container-wide relative z-10">
+        <div className="grid lg:grid-cols-[1fr_0.8fr] gap-12 items-center">
+          
+          {/* Left Text Column */}
+          <div className="relative z-20">
+            <Reveal>
+              <p className="text-[11px] font-bold tracking-[0.2em] text-ink/60 uppercase mb-6">
+                Job Training Centres in Bangalore, Udupi & Sirsi
+              </p>
+            </Reveal>
 
-      {/* Ambient blobs */}
-      <div className="mesh-bg absolute inset-0 -z-10" />
-      <div className="grid-lines absolute inset-0 -z-10 opacity-30 [mask-image:radial-gradient(60%_50%_at_20%_30%,black,transparent)]" />
+            <Reveal delay={80}>
+              <h1 className="font-display text-[4rem] leading-[0.9] font-extrabold text-ink sm:text-[5.5rem] lg:text-[7rem] tracking-tight">
+                Udupi <br className="hidden sm:block" />
+                Academy <br className="hidden sm:block" />
+                <span className="text-gold italic pr-4 whitespace-nowrap">of Excellence.</span>
+              </h1>
+            </Reveal>
 
-      <div className="container-wide relative flex min-h-screen items-center pb-24 pt-36 lg:pt-40">
-        <div className="max-w-xl">
-          <Reveal>
-            <Eyebrow>Admissions open · Batch 2026</Eyebrow>
-          </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/70">
+                Job-ready training in Aviation, Hospitality, Hotel Management, Fire Safety, Fashion Designing, Interior Designing and Effective Communication.
+              </p>
+            </Reveal>
 
-          <Reveal delay={80}>
-            <h1 className="mt-7 text-[2.9rem] leading-[0.98] font-extrabold text-balance sm:text-6xl lg:text-[4.6rem]">
-              Transform skills into{" "}
-              <span className="relative inline-block">
-                <span className="text-gradient-gold">successful careers.</span>
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 300 12"
-                  className="absolute -bottom-2 left-0 w-full text-gold/60"
-                >
-                  <path
-                    d="M2 8C60 3 140 2 298 6"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </h1>
-          </Reveal>
+            <Reveal delay={240}>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link to="/contact" className="inline-flex items-center justify-center bg-ink px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-gold hover:text-ink">
+                  Enquire Now <ArrowRight className="ml-2 size-4" />
+                </Link>
+                <Link to="/courses" className="inline-flex items-center justify-center border border-ink/20 px-8 py-4 text-sm font-semibold text-ink transition-all hover:border-ink hover:bg-ink hover:text-white">
+                  Explore Courses
+                </Link>
+              </div>
+            </Reveal>
 
-          <Reveal delay={160}>
-            <p className="mt-8 max-w-lg text-lg leading-relaxed text-muted-foreground">
-              Professional training that prepares students for real jobs through
-              industry-led education, practical learning and dedicated placement
-              support — in the heart of Udupi, Karnataka.
-            </p>
-          </Reveal>
-
-          <Reveal delay={240}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <MagneticButton href="#enquiry" variant="primary">
-                Apply Now <ArrowRight className="size-4" />
-              </MagneticButton>
-              <MagneticButton href="#courses" variant="outline">
-                Explore Courses
-              </MagneticButton>
-            </div>
-          </Reveal>
-
-          <Reveal delay={320}>
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-border pt-8">
-              {[
-                { v: 5000, s: "+", l: "Students trained" },
-                { v: 100, s: "+", l: "Hiring partners" },
-                { v: 20, s: "+", l: "Career programs" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <p className="font-display text-3xl font-extrabold">
-                    <Counter to={s.v} suffix={s.s} />
-                  </p>
-                  <p className="text-sm text-muted-foreground">{s.l}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Floating glass cards */}
-          <Reveal delay={400}>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <div className="glass flex items-center gap-3 rounded-2xl px-5 py-3 shadow-card">
-                <span className="grid size-9 place-items-center rounded-xl bg-gold/20 text-gold-foreground">
-                  <TrendingUp className="size-4" />
-                </span>
+            <Reveal delay={320}>
+              <div className="mt-16 flex items-center gap-12 border-t border-ink/10 pt-8">
                 <div>
-                  <p className="font-display text-xl font-extrabold leading-none">
-                    <Counter to={95} suffix="%" />
-                  </p>
-                  <p className="text-xs text-muted-foreground">Placement rate</p>
+                  <p className="font-display text-4xl font-extrabold text-ink">50+</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink/60 mt-1">Students Placed</p>
                 </div>
-              </div>
-
-              <div className="glass flex items-center gap-3 rounded-2xl px-5 py-3 shadow-card">
-                <span className="pulse-ring grid size-9 place-items-center rounded-xl bg-accent/15 text-accent">
-                  <BadgeCheck className="size-4" />
-                </span>
                 <div>
-                  <p className="text-sm font-semibold">NSDC & Govt. recognised</p>
-                  <p className="text-xs text-muted-foreground">Certified since 2010</p>
+                  <p className="font-display text-4xl font-extrabold text-ink">100%</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-ink/60 mt-1">Placement Guarantee</p>
+                </div>
+                <div>
+                  <p className="font-display text-xl font-extrabold text-gold leading-none italic mt-2">Pay After<br/>Placement</p>
                 </div>
               </div>
+            </Reveal>
+          </div>
 
-              <div className="glass flex items-center gap-2 rounded-full px-4 py-2 shadow-card">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold opacity-70" />
-                  <span className="relative inline-flex size-2 rounded-full bg-gold" />
-                </span>
-                <span className="text-xs font-medium text-muted-foreground">
-                  <Sparkles className="mr-1 inline size-3 text-gold" />
-                  <Counter to={38} /> students enrolled this week
-                </span>
+          {/* Right Image Column - Editorial overlap */}
+          <div className="relative mt-12 lg:mt-0 hidden md:block">
+            <Reveal delay={400}>
+              <div className="relative aspect-[3/4] w-full max-w-md ml-auto">
+                {/* Gold offset block */}
+                <div className="absolute -inset-4 bg-gold/10 -z-10 translate-x-6 translate-y-6"></div>
+                {/* Image */}
+                <img
+                  src={heroImg}
+                  alt="Udupi Academy student in aviation training"
+                  className="size-full object-cover grayscale-[20%] contrast-125"
+                />
+                {/* Editorial corner accent */}
+                <div className="absolute -top-4 -left-4 size-16 border-t-2 border-l-2 border-gold"></div>
+                <div className="absolute -bottom-4 -right-4 size-16 border-b-2 border-r-2 border-gold"></div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

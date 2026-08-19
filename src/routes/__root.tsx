@@ -1,5 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, Link, createRootRouteWithContext, useRouter } from "@tanstack/react-router";
+import { SiteNav } from "@/components/site/SiteNav";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { FloatingUI } from "@/components/site/FloatingUI";
 import { useEffect, type ReactNode } from "react";
 
 function NotFoundComponent() {
@@ -69,7 +72,14 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="flex min-h-screen flex-col bg-background">
+        <SiteNav />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <FloatingUI />
+      </div>
     </QueryClientProvider>
   );
 }

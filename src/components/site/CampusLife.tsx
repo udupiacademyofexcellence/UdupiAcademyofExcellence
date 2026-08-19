@@ -1,83 +1,134 @@
 import { useState } from "react";
 import { Expand, X } from "lucide-react";
-import library from "@/assets/gallery-library.jpg";
-import events from "@/assets/gallery-events.jpg";
-import visit from "@/assets/gallery-visit.jpg";
-import classroom from "@/assets/gallery-class.jpg";
-import lab from "@/assets/hero-1.jpg";
-import workshop from "@/assets/hero-3.jpg";
-import { Reveal, SectionHeading } from "./primitives";
+import { Reveal } from "./primitives";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
-const ITEMS = [
-  { img: lab, label: "Computer labs", w: 900, h: 1200 },
-  { img: events, label: "Campus events", w: 900, h: 600 },
-  { img: library, label: "Library", w: 800, h: 900 },
-  { img: workshop, label: "Workshops", w: 900, h: 700 },
-  { img: visit, label: "Industrial visits", w: 800, h: 1000 },
-  { img: classroom, label: "Classrooms", w: 900, h: 700 },
+// Gallery images — all real academy photographs
+import studentAviation from "@/assets/Student-aviation.jpg";
+import studentsStaff from "@/assets/Students&staff.jpg";
+import fireSafetyGroup from "@/assets/Students-Firesafety-GroupPhoto.jpg";
+import academyBuilding from "@/assets/academy-building.jpg";
+import academyEvent from "@/assets/academy-event-ceremony.jpg";
+import academyStudentGroup from "@/assets/academy-student-group.jpg";
+import academyStudentsStaff from "@/assets/academy-students-staff.jpg";
+import academyTraining from "@/assets/academy-training-session.jpg";
+import academyOpening from "@/assets/Academy-Opening.jpg";
+import staffTeaching from "@/assets/StaffTeaching.jpg";
+
+const ALL_GALLERY_ITEMS = [
+  { img: studentAviation,     label: "Aviation & hospitality training" },
+  { img: academyStudentsStaff, label: "Students & staff" },
+  { img: fireSafetyGroup,     label: "Fire safety group training" },
+  { img: academyBuilding,     label: "Academy building" },
+  { img: academyEvent,        label: "Academy ceremony & events" },
+  { img: academyStudentGroup, label: "Student group" },
+  { img: studentsStaff,       label: "Students & staff at the academy" },
+  { img: academyTraining,     label: "Training session" },
+  { img: staffTeaching,       label: "Faculty & teaching staff" },
+  { img: academyOpening,      label: "Academy opening" },
 ];
 
-export function CampusLife() {
+// First 6 shown in the homepage preview
+const PREVIEW_ITEMS = ALL_GALLERY_ITEMS.slice(0, 6);
+
+export function CampusLife({ preview = false }: { preview?: boolean }) {
   const [active, setActive] = useState<number | null>(null);
-  const activeItem = active === null ? null : ITEMS[active];
+
+  const displayItems = preview ? PREVIEW_ITEMS : ALL_GALLERY_ITEMS;
+  const activeItem = active === null ? null : displayItems[active];
 
   return (
-
-    <section id="campus" className="py-24 lg:py-32">
+    <section
+      id={preview ? "campus-preview" : "campus"}
+      className="py-24 lg:py-32 bg-surface overflow-hidden"
+    >
       <div className="container-wide">
-        <SectionHeading
-          eyebrow="Campus life"
-          title="A campus that keeps you learning after class hours."
-          intro="Labs, library, sports, cultural nights and industry visits — student life at Udupi Academy is designed to build confidence, not just credentials."
-        />
 
-        <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
-          {ITEMS.map((it, i) => (
-            <Reveal key={it.label} delay={(i % 3) * 90} className="break-inside-avoid">
-              <button
-                onClick={() => setActive(i)}
-                className="group relative block w-full overflow-hidden rounded-[1.75rem]"
-              >
-                <img
-                  src={it.img}
-                  alt={`${it.label} at Udupi Academy`}
-                  width={it.w}
-                  height={it.h}
-                  loading="lazy"
-                  className="w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110"
-                />
-                <span className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <span className="absolute bottom-5 left-5 flex items-center gap-2 text-sm font-semibold text-primary-foreground opacity-0 transition-all duration-500 group-hover:opacity-100">
-                  <Expand className="size-4" /> {it.label}
-                </span>
-              </button>
+        {/* Left-Aligned Header */}
+        <div className="max-w-3xl mb-12 lg:mb-16">
+          <Reveal>
+            <h2 className="font-display text-[3.5rem] leading-[0.95] sm:text-[4.5rem] lg:text-[5.5rem] font-extrabold text-ink tracking-tight">
+              Life at the <br/>
+              <span className="text-gold italic pr-4">Academy.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <p className="mt-6 text-lg leading-relaxed text-ink/70 max-w-xl">
+              From culinary training and fire safety drills to airport visits and fashion activities, our students learn by doing.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Uniform 3-Column Grid */}
+        <div className="w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {displayItems.map((item, i) => (
+              <Reveal key={item.label} delay={i * 80}>
+                <button
+                  onClick={() => setActive(i)}
+                  className="group relative block w-full overflow-hidden bg-ink aspect-[4/3]"
+                >
+                  <img
+                    src={item.img}
+                    alt={item.label}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 group-hover:opacity-70"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 flex flex-col justify-end p-6">
+                    <span className="font-display text-lg font-bold text-white flex items-center gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <Expand className="size-4 text-gold shrink-0" />
+                      <span className="text-left leading-tight">{item.label}</span>
+                    </span>
+                  </div>
+                </button>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* View Gallery CTA — homepage preview only */}
+          {preview && (
+            <Reveal delay={100}>
+              <div className="mt-12 flex justify-start">
+                <Link
+                  to="/gallery"
+                  className="inline-flex items-center justify-center bg-[#F5B82E] px-8 py-4 text-[13px] font-bold text-ink uppercase tracking-widest transition-all hover:bg-gold/90 hover:shadow-lg group"
+                >
+                  VIEW GALLERY <ArrowRight className="ml-3 size-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
             </Reveal>
-          ))}
+          )}
         </div>
       </div>
 
+      {/* Lightbox */}
       {activeItem && (
         <div
           role="dialog"
           aria-label={activeItem.label}
-          className="fixed inset-0 z-[80] grid place-items-center bg-ink/85 p-6 backdrop-blur-md"
+          className="fixed inset-0 z-[100] grid place-items-center bg-ink/95 p-4 md:p-12 backdrop-blur-md"
           onClick={() => setActive(null)}
         >
           <button
             aria-label="Close image"
-            className="absolute top-6 right-6 grid size-12 place-items-center rounded-full bg-white/10 text-primary-foreground hover:bg-white/20"
+            className="absolute top-6 right-6 md:top-10 md:right-10 grid size-14 place-items-center bg-white/5 border border-white/10 text-white hover:bg-gold hover:text-ink transition-colors"
             onClick={() => setActive(null)}
           >
-            <X className="size-5" />
+            <X className="size-6" />
           </button>
-          <img
-            src={activeItem.img}
-            alt={activeItem.label}
-            className="max-h-[82vh] w-auto rounded-[1.75rem] object-contain shadow-lift"
-          />
+          <div className="max-w-5xl w-full">
+            <img
+              src={activeItem.img}
+              alt={activeItem.label}
+              className="w-full h-auto max-h-[80vh] object-contain"
+            />
+            <p className="mt-6 text-center font-display text-2xl text-white font-bold">
+              {activeItem.label}
+            </p>
+          </div>
         </div>
       )}
-
     </section>
   );
 }

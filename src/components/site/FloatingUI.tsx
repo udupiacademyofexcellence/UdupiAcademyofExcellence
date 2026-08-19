@@ -44,7 +44,7 @@ export function FloatingUI() {
           <ArrowUp className="size-5" />
         </button>
         <a
-          href="https://wa.me/919886012345"
+          href="https://wa.me/916363913356"
           target="_blank"
           rel="noreferrer"
           aria-label="Chat with us on WhatsApp"
@@ -57,7 +57,7 @@ export function FloatingUI() {
       {/* Mobile sticky CTA */}
       <div className="glass fixed inset-x-0 bottom-0 z-[60] flex gap-2 p-3 sm:hidden">
         <a
-          href="tel:+919886012345"
+          href="tel:+916363913356"
           className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full border border-border bg-background text-sm font-semibold"
         >
           <Phone className="size-4" /> Call
