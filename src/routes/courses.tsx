@@ -24,9 +24,9 @@ const COURSES = [
   },
   { 
     num: "02", 
-    title: "Fire And Industrial Safety Management", 
+    title: "Fire And Industrial Safety Engineering", 
     duration: "8–10 Month", 
-    desc: "Learn essential fire and industrial safety management protocols to ensure workplace safety.",
+    desc: "Learn essential fire and industrial safety engineering protocols to ensure workplace safety.",
     img: fireSafetyImg,
     bg: "bg-surface"
   },
@@ -62,6 +62,14 @@ const COURSES = [
     img: interiorImg,
     bg: "bg-surface"
   },
+  { 
+    num: "07", 
+    title: "Diploma In Hospital Administration", 
+    duration: "8–10 Month", 
+    desc: "Gain the skills to manage hospital operations, healthcare administration and patient services effectively.",
+    img: hotelMgmtImg,
+    bg: "bg-white"
+  },
 ];
 
 function CoursesPage() {
@@ -72,7 +80,7 @@ function CoursesPage() {
         <div className="container-wide">
           <Reveal>
             <h1 className="font-display text-[4rem] sm:text-[5.5rem] lg:text-[7.5rem] font-extrabold leading-[0.9] tracking-tight">
-              Six job-ready <br/>
+              Seven job-ready <br/>
               <span className="text-gold italic pr-4">programmes.</span>
             </h1>
           </Reveal>

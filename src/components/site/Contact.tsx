@@ -6,11 +6,12 @@ import { cn } from "@/lib/utils";
 
 const COURSES = [
   "Aviation & Hospitality",
-  "Fire And Industrial Safety Management",
+  "Fire And Industrial Safety Engineering",
   "Hotel Management",
   "Effective Communication & Interview Preparations",
   "Diploma In Fashion Designing",
-  "Diploma Interior Designing"
+  "Diploma Interior Designing",
+  "Diploma In Hospital Administration"
 ];
 
 const schema = z.object({

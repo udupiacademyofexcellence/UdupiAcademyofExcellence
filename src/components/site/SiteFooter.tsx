@@ -22,6 +22,7 @@ const COLUMNS = [
       { name: "Effective Communication", href: "/courses" },
       { name: "Fashion Designing", href: "/courses" },
       { name: "Interior Designing", href: "/courses" },
+      { name: "Hospital Administration", href: "/courses" },
     ],
   },
   {
@@ -89,20 +90,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center gap-3 border-t border-white/10 pt-8">
-          {["100% Placement Guarantee", "Pay After Placement"].map(
-            (c) => (
-              <span
-                key={c}
-                className="rounded-full border border-white/12 px-3.5 py-1.5 text-[11px] font-medium text-primary-foreground/55"
-              >
-                {c}
-              </span>
-            ),
-          )}
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 text-xs text-primary-foreground/45">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 text-xs text-primary-foreground/45">
           <p>© {new Date().getFullYear()} Udupi Academy. All rights reserved.</p>
           <div className="flex items-center gap-6 sm:mr-24">
             <button

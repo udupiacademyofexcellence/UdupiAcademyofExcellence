@@ -17,7 +17,7 @@ const COURSES = [
   },
   {
     num: "02",
-    title: "Fire And Industrial Safety Management",
+    title: "Fire And Industrial Safety Engineering",
     duration: "8–10 Month",
     img: fireSafetyImg,
   },
@@ -45,6 +45,12 @@ const COURSES = [
     duration: "8–10 Month",
     img: interiorImg,
   },
+  {
+    num: "07",
+    title: "Diploma In Hospital Administration",
+    duration: "8–10 Month",
+    img: hotelMgmtImg,
+  },
 ];
 
 export function Courses() {
@@ -54,7 +60,7 @@ export function Courses() {
         <Reveal>
           <div className="max-w-2xl mb-16">
             <h2 className="font-display text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
-              Six job-ready programmes.
+              Seven job-ready programmes.
             </h2>
           </div>
         </Reveal>
