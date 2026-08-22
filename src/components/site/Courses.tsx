@@ -1,10 +1,11 @@
 import { ArrowRight } from "lucide-react";
-import aviationImg from "@/assets/Aviation & Hospitality.jpg";
-import fireSafetyImg from "@/assets/Fire And Industrial Safety Management.png";
-import hotelMgmtImg from "@/assets/Hotel Management.jpeg";
+import aviationImg from "@/assets/Aviation.jpeg";
+import fireSafetyImg from "@/assets/FireSafety.jpeg";
+import hotelMgmtImg from "@/assets/HotelManagement.jpeg";
 import communicationImg from "@/assets/Effective Communication & Interview Preparations.jpg";
-import fashionImg from "@/assets/Diploma In Fashion Designing.webp";
+import fashionImg from "@/assets/Fashion Design.jpeg";
 import interiorImg from "@/assets/Diploma Interior Designing.webp";
+import hospitalImg from "@/assets/Diploma In Hospital Administration.jpg";
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./primitives";
 
@@ -49,7 +50,7 @@ const COURSES = [
     num: "07",
     title: "Diploma In Hospital Administration",
     duration: "8–10 Month",
-    img: hotelMgmtImg,
+    img: hospitalImg,
   },
 ];
 

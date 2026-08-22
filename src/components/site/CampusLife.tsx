@@ -15,18 +15,26 @@ import academyStudentsStaff from "@/assets/academy-students-staff.jpg";
 import academyTraining from "@/assets/academy-training-session.jpg";
 import academyOpening from "@/assets/Academy-Opening.jpg";
 import staffTeaching from "@/assets/StaffTeaching.jpg";
+import aviationNew from "@/assets/Aviation.jpeg";
+import fireSafetyNew from "@/assets/FireSafety.jpeg";
+import hotelMgmtNew from "@/assets/HotelManagement.jpeg";
+import fashionNew from "@/assets/Fashion Design.jpeg";
 
 const ALL_GALLERY_ITEMS = [
-  { img: studentAviation,     label: "Aviation & hospitality training" },
+  { img: aviationNew,          label: "Aviation & hospitality training" },
+  { img: fireSafetyNew,        label: "Fire & industrial safety engineering" },
+  { img: hotelMgmtNew,         label: "Hotel management training" },
+  { img: fashionNew,           label: "Fashion designing programme" },
+  { img: studentAviation,      label: "Aviation students" },
   { img: academyStudentsStaff, label: "Students & staff" },
-  { img: fireSafetyGroup,     label: "Fire safety group training" },
-  { img: academyBuilding,     label: "Academy building" },
-  { img: academyEvent,        label: "Academy ceremony & events" },
-  { img: academyStudentGroup, label: "Student group" },
-  { img: studentsStaff,       label: "Students & staff at the academy" },
-  { img: academyTraining,     label: "Training session" },
-  { img: staffTeaching,       label: "Faculty & teaching staff" },
-  { img: academyOpening,      label: "Academy opening" },
+  { img: fireSafetyGroup,      label: "Fire safety group training" },
+  { img: academyBuilding,      label: "Academy building" },
+  { img: academyEvent,         label: "Academy ceremony & events" },
+  { img: academyStudentGroup,  label: "Student group" },
+  { img: studentsStaff,        label: "Students & staff at the academy" },
+  { img: academyTraining,      label: "Training session" },
+  { img: staffTeaching,        label: "Faculty & teaching staff" },
+  { img: academyOpening,       label: "Academy opening" },
 ];
 
 // First 6 shown in the homepage preview
