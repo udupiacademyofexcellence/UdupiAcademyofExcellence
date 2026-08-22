@@ -1,4 +1,4 @@
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Facebook, Instagram } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const COLUMNS = [
@@ -56,6 +56,14 @@ export function SiteFooter() {
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-primary-foreground/60">
               100% Placement Guarantee. Pay after placement. Job training centres in Bangalore, Udupi, and Sirsi.
             </p>
+            <div className="mt-6 flex items-center gap-3">
+              <a href="https://www.facebook.com/people/Udupi-academy-of-excellence-sirsi/61590587367659/" target="_blank" rel="noreferrer" aria-label="Facebook" className="grid size-9 place-items-center rounded-full border border-white/15 text-primary-foreground/60 hover:border-gold hover:text-gold transition-colors">
+                <Facebook className="size-4" />
+              </a>
+              <a href="https://www.instagram.com/udupiacademy/?hl=en" target="_blank" rel="noreferrer" aria-label="Instagram" className="grid size-9 place-items-center rounded-full border border-white/15 text-primary-foreground/60 hover:border-gold hover:text-gold transition-colors">
+                <Instagram className="size-4" />
+              </a>
+            </div>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Send } from "lucide-react";
+import { Send, Facebook, Instagram } from "lucide-react";
 import { z } from "zod";
 import { Reveal } from "./primitives";
 import { cn } from "@/lib/utils";
@@ -58,6 +58,14 @@ export function Contact() {
               <p className="mt-8 max-w-sm text-lg leading-relaxed text-ink/70">
                 Visit us, call us, or send an enquiry. We prepare you for a real career.
               </p>
+              <div className="mt-6 flex items-center gap-4">
+                <a href="https://www.facebook.com/people/Udupi-academy-of-excellence-sirsi/61590587367659/" target="_blank" rel="noreferrer" aria-label="Facebook" className="grid size-10 place-items-center border border-ink/20 text-ink/60 hover:border-ink hover:text-ink transition-colors">
+                  <Facebook className="size-4" />
+                </a>
+                <a href="https://www.instagram.com/udupiacademy/?hl=en" target="_blank" rel="noreferrer" aria-label="Instagram" className="grid size-10 place-items-center border border-ink/20 text-ink/60 hover:border-ink hover:text-ink transition-colors">
+                  <Instagram className="size-4" />
+                </a>
+              </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-12 border-t border-ink/10 pt-12">
