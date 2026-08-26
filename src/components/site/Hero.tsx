@@ -12,21 +12,21 @@ export function Hero() {
           {/* Left Text Column */}
           <div className="relative z-20">
             <Reveal>
-              <p className="text-[11px] font-bold tracking-[0.2em] text-ink/60 uppercase mb-6">
-                Job Training Centres in Bangalore, Udupi & Sirsi
+              <p className="text-[10px] font-bold tracking-[0.15em] text-ink/60 uppercase mb-6 leading-snug">
+                Job Training Centres in Bangalore, Udupi &amp; Sirsi
               </p>
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="font-display text-[3.25rem] leading-[0.9] font-extrabold text-ink sm:text-[5.5rem] lg:text-[7rem] tracking-tight">
-                Udupi <br className="hidden sm:block" />
-                Academy <br className="hidden sm:block" />
-                <span className="text-gold italic pr-4 sm:whitespace-nowrap">of Excellence.</span>
+              <h1 className="font-display text-[2.75rem] leading-[0.95] font-extrabold text-ink sm:text-[5.5rem] lg:text-[7rem] tracking-tight">
+                Udupi{" "}
+                Academy{" "}
+                <span className="text-gold italic">of Excellence.</span>
               </h1>
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-8 max-w-md text-lg leading-relaxed text-ink/70">
+              <p className="mt-8 w-full max-w-md text-base sm:text-lg leading-relaxed text-ink/70 pr-4 sm:pr-0">
                 Job-ready training in Aviation, Hospitality, Hotel Management, Fire Safety, Fashion Designing, Interior Designing and Effective Communication.
               </p>
             </Reveal>
@@ -43,17 +43,17 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={320}>
-              <div className="mt-16 flex items-center gap-12 border-t border-ink/10 pt-8">
+              <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-6 border-t border-ink/10 pt-8">
                 <div>
-                  <p className="font-display text-4xl font-extrabold text-ink">50+</p>
+                  <p className="font-display text-3xl sm:text-4xl font-extrabold text-ink">50+</p>
                   <p className="text-xs font-semibold uppercase tracking-wider text-ink/60 mt-1">Students Placed</p>
                 </div>
                 <div>
-                  <p className="font-display text-4xl font-extrabold text-ink">100%</p>
+                  <p className="font-display text-3xl sm:text-4xl font-extrabold text-ink">100%</p>
                   <p className="text-xs font-semibold uppercase tracking-wider text-ink/60 mt-1">Placement Guarantee</p>
                 </div>
                 <div>
-                  <p className="font-display text-xl font-extrabold text-gold leading-none italic mt-2">Pay After<br/>Placement</p>
+                  <p className="font-display text-lg sm:text-xl font-extrabold text-gold leading-none italic">Pay After<br/>Placement</p>
                 </div>
               </div>
             </Reveal>
