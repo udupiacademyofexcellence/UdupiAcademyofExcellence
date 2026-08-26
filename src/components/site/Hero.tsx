@@ -18,10 +18,10 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="font-display text-[4rem] leading-[0.9] font-extrabold text-ink sm:text-[5.5rem] lg:text-[7rem] tracking-tight">
+              <h1 className="font-display text-[3.25rem] leading-[0.9] font-extrabold text-ink sm:text-[5.5rem] lg:text-[7rem] tracking-tight">
                 Udupi <br className="hidden sm:block" />
                 Academy <br className="hidden sm:block" />
-                <span className="text-gold italic pr-4 whitespace-nowrap">of Excellence.</span>
+                <span className="text-gold italic pr-4 sm:whitespace-nowrap">of Excellence.</span>
               </h1>
             </Reveal>
 

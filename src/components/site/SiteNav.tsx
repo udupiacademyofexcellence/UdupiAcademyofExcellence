@@ -26,10 +26,10 @@ export function SiteNav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur-md",
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-border py-3 shadow-sm"
-          : "bg-white border-transparent py-5",
+          ? "border-border py-3 shadow-sm"
+          : "border-transparent py-3 lg:py-5"
       )}
     >
       <div className="container-wide">
