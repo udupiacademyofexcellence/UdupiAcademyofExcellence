@@ -24,11 +24,12 @@ const schema = z.object({
 
 export function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const submit = (e: FormEvent<HTMLFormElement>) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
     const result = schema.safeParse(data);
     if (!result.success) {
       const next: Record<string, string> = {};
@@ -40,7 +41,38 @@ export function Contact() {
     }
     setErrors({});
     setState("sending");
-    setTimeout(() => setState("sent"), 1100);
+
+    try {
+      // Replace this URL with your deployed Google Apps Script Web App URL
+      const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+      
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      
+      const json = await response.json();
+      if (json.result === "success") {
+        setState("sent");
+        form.reset();
+        setTimeout(() => setState("idle"), 5000); // Reset state after 5 seconds
+      } else {
+        throw new Error(json.error || "Submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+      setState("error");
+      setTimeout(() => setState("idle"), 5000); // Reset state after 5 seconds
+    }
   };
 
   return (
@@ -164,12 +196,14 @@ export function Contact() {
                 disabled={state !== "idle"}
                 className={cn(
                   "mt-10 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-5 text-[13px] font-semibold tracking-wider text-white uppercase transition-all duration-500",
-                  state === "sent" ? "bg-gold text-ink" : "hover:bg-gold hover:text-ink"
+                  state === "sent" ? "bg-gold text-ink" : 
+                  state === "error" ? "bg-destructive text-white" : "hover:bg-gold hover:text-ink"
                 )}
               >
                 {state === "idle" && <>Submit Enquiry <Send className="size-4" /></>}
                 {state === "sending" && "Sending…"}
-                {state === "sent" && "Thank you — we'll be in touch"}
+                {state === "sent" && "Thank you. Your enquiry has been submitted successfully."}
+                {state === "error" && "Something went wrong. Please try again."}
               </button>
             </form>
           </Reveal>
