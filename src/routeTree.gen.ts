@@ -13,8 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -36,6 +39,11 @@ const CoursesRoute = CoursesRouteImport.update({
   path: '/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -46,22 +54,38 @@ const PlacementsRoute = PlacementsRouteImport.update({
   path: '/placements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/feedback': typeof FeedbackRoute
   '/gallery': typeof GalleryRoute
   '/placements': typeof PlacementsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/feedback': typeof FeedbackRoute
   '/gallery': typeof GalleryRoute
   '/placements': typeof PlacementsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,23 +93,46 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/feedback': typeof FeedbackRoute
   '/gallery': typeof GalleryRoute
   '/placements': typeof PlacementsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/contact' | '/courses' | '/gallery' | '/placements'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/courses'
+    | '/feedback'
+    | '/gallery'
+    | '/placements'
+    | '/admin/login'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/courses' | '/gallery' | '/placements'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/courses'
+    | '/feedback'
+    | '/gallery'
+    | '/placements'
+    | '/admin/login'
+    | '/admin'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
     | '/courses'
+    | '/feedback'
     | '/gallery'
     | '/placements'
+    | '/admin/login'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -93,8 +140,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
+  FeedbackRoute: typeof FeedbackRoute
   GalleryRoute: typeof GalleryRoute
   PlacementsRoute: typeof PlacementsRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -127,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -141,6 +198,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlacementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -149,8 +220,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
+  FeedbackRoute: FeedbackRoute,
   GalleryRoute: GalleryRoute,
   PlacementsRoute: PlacementsRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

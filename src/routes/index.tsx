@@ -4,6 +4,7 @@ import { Contact } from "@/components/site/Contact";
 import { Hero } from "@/components/site/Hero";
 import { Placements } from "@/components/site/Placements";
 import { CampusLife } from "@/components/site/CampusLife";
+import { PublicReviews } from "@/components/site/PublicReviews";
 import { Reveal } from "@/components/site/primitives";
 import { ArrowRight } from "lucide-react";
 import campus from "@/assets/academy-building.jpg";
@@ -46,7 +47,30 @@ function Index() {
       <Courses />
       <Placements />
       <CampusLife preview />
-      
+
+      {/* Student Reviews Teaser */}
+      <section className="py-24 lg:py-32 bg-white" aria-labelledby="reviews-teaser-heading">
+        <div className="container-wide">
+          <Reveal>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
+              <div>
+                <p className="text-[11px] font-bold tracking-widest text-ink/40 uppercase mb-3">Student Voices</p>
+                <h2 id="reviews-teaser-heading" className="font-display text-4xl lg:text-5xl font-extrabold text-ink leading-[1.05] tracking-tight">
+                  What Our <span className="text-gold italic">Students Say</span>
+                </h2>
+              </div>
+              <Link
+                to="/feedback"
+                className="shrink-0 inline-flex items-center gap-2 border border-ink/20 px-6 py-3 text-[13px] font-semibold uppercase tracking-wider text-ink transition-all hover:bg-ink hover:text-white"
+              >
+                All Reviews <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </Reveal>
+          <PublicReviews limit={3} />
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-24 lg:py-40 bg-surface text-center">
         <div className="container-wide">

@@ -3,7 +3,9 @@ import { Outlet, Link, createRootRouteWithContext, useRouter } from "@tanstack/r
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { FloatingUI } from "@/components/site/FloatingUI";
+import { AuthProvider } from "@/hooks/useAuth";
 import { useEffect, type ReactNode } from "react";
+
 
 function NotFoundComponent() {
   return (
@@ -70,16 +72,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  
+  // Check if we are on an admin route
+  const isAdminRoute = router.state.location.pathname.startsWith("/admin");
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background overflow-x-hidden">
-        <SiteNav />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-        <FloatingUI />
-      </div>
-    </QueryClientProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <div className="flex min-h-screen flex-col bg-background overflow-x-hidden">
+          {!isAdminRoute && <SiteNav />}
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          {!isAdminRoute && <SiteFooter />}
+          {!isAdminRoute && <FloatingUI />}
+        </div>
+      </QueryClientProvider>
+    </AuthProvider>
   );
 }
+

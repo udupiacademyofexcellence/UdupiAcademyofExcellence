@@ -96,7 +96,7 @@ export function Hero() {
                 <div className="grid grid-cols-3 gap-2 sm:gap-4">
                   {/* Stat 1 */}
                   <div>
-                    <p className="font-display text-3xl sm:text-4xl font-extrabold text-ink leading-none">50+</p>
+                    <p className="font-display text-3xl sm:text-4xl font-extrabold text-ink leading-none">200+</p>
                     <p className="mt-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-ink/50 leading-tight">
                       Students Placed
                     </p>

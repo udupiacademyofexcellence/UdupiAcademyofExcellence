@@ -9,6 +9,7 @@ const MENU = [
   { label: "Courses", href: "/courses" },
   { label: "Placements", href: "/placements" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Reviews", href: "/feedback" },
   { label: "Contact", href: "/contact" },
 ];
 

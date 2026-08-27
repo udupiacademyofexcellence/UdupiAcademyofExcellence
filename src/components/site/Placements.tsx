@@ -40,7 +40,7 @@ export function Placements() {
             <Reveal delay={200}>
               <div className="mt-8 border-l-[3px] border-gold pl-6">
                 <p className="text-lg leading-relaxed text-white/70 max-w-sm">
-                  More than <strong className="text-white font-semibold">50+ students placed</strong> in the past 6 months after completing our job training courses.
+                  More than <strong className="text-white font-semibold">200+ students placed</strong> in the past 6 months after completing our job training courses.
                 </p>
               </div>
             </Reveal>

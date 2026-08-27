@@ -45,7 +45,7 @@ function PlacementsPage() {
           <Reveal delay={200}>
             <div className="mt-8 max-w-lg">
               <p className="text-lg leading-relaxed text-white/70">
-                More than 50+ students placed in the past 6 months after completing our job training courses.
+                More than 200+ students placed in the past 6 months after completing our job training courses.
               </p>
             </div>
           </Reveal>
@@ -57,7 +57,7 @@ function PlacementsPage() {
         <div className="container-wide text-center">
           <Reveal>
             <h2 className="font-display text-[6rem] sm:text-[8rem] lg:text-[10rem] leading-[0.8] font-extrabold text-gold tracking-tight">
-              50+
+              200+
             </h2>
             <p className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-ink mt-6 tracking-tight">
               Students placed in the past 6 months.
