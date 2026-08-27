@@ -44,7 +44,7 @@ export function Contact() {
 
     try {
       // Replace this URL with your deployed Google Apps Script Web App URL
-      const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLKM3uSIUX3tUPz95HTVxHga1xsU6AmxOZRx2R1EZ3KTXyhGfrJR4vfTJ3WaRuAQ/exec";
       
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
